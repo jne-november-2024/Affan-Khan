@@ -1,0 +1,21 @@
+let users=[
+    {
+        id:1,
+        name:"raj",
+        city:"banglore"
+    },
+    {
+        id:2,
+        name:"akash",
+        city:"mumbai"
+    },
+    {
+        id:3,
+        name:"raj",
+        city:"pune"
+    },
+]
+console.log(users,typeof(users))
+console.log(users[0],typeof(users[0]))
+console.log(Object.keys(users),typeof(Object.keys(users)))
+console.log(Object.values(users),typeof(Object.values(users)))

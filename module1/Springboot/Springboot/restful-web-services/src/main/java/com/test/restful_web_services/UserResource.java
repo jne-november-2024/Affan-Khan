@@ -1,11 +1,21 @@
 package com.test.restful_web_services;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
+@Validated
 public class UserResource {
     private final UserDaoService service;
 
@@ -22,14 +32,40 @@ public class UserResource {
     public ResponseEntity<User> retrieveUser(@PathVariable int id) {
         User user = service.findById(id);
         if (user == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+            throw new UserNotFoundException("ID " + id + " not found");
         }
         return ResponseEntity.ok(user);
     }
 
 
+    @DeleteMapping(path = "/users/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable int id) {
+
+        boolean userDeleted = service.deleteById(id);
+
+        if (!userDeleted) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with ID: " + id);
+        }
+
+
+        return ResponseEntity.status(HttpStatus.OK).body("User with ID " + id + " deleted successfully");
+    }
+
+
+    @PostMapping(path = "/users")
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+        User createdUser = service.save(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+    }
 
 }
+
+
+
+
+
+
 
 
 

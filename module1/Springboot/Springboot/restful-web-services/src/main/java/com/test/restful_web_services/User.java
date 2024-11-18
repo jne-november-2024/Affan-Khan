@@ -1,16 +1,28 @@
 package com.test.restful_web_services;
-import java.time.LocalDate;
-public class User {
-private int id;
-private String name;
-private LocalDate birthdate;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.*;
+import org.springframework.validation.annotation.Validated;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public User(int id, String name, LocalDate birthdate) {
+import java.time.LocalDate;
+@Validated
+
+public class User {
+
+    private int id;
+    @NotBlank(message = "Name cannot be empty")
+    private String name;
+    @Past(message = "Birthdate must be in the past")
+    private LocalDate birthdate;
+   @JsonCreator
+    public User( @JsonProperty("id")int id, @JsonProperty("name") String name, @JsonProperty("birthdate") LocalDate birthdate) {
         this.id = id;
         this.name = name;
         this.birthdate = birthdate;
     }
-
+    public User() {}
 
     public int getId() {
         return id;

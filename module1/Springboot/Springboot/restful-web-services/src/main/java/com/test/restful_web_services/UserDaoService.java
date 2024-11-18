@@ -51,7 +51,8 @@ public class UserDaoService {
         if (user != null) {
             users.remove(user);
             return true;
+
         }
-        return false;
+     return false;
     }
 }

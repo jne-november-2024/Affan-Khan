@@ -3,16 +3,22 @@ package com.test.restful_web_services;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserDaoService {
 
+
+
     private static List<User> users = new ArrayList<>();
     private static int usersCount = 10;
 
 
-    static {
+    @PostConstruct
+    public void doSomething(){
         users.add(new User(++usersCount, "John Doe", LocalDate.of(1990, 1, 15)));
         users.add(new User(++usersCount, "Jane Smith", LocalDate.of(1985, 5, 25)));
         users.add(new User(++usersCount, "Alice Johnson", LocalDate.of(1992, 8, 30)));

@@ -38,19 +38,42 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
-		<!-- Spring Boot Starter Test (for unit testing) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-hal-explorer</artifactId>
+		</dependency>
+		<!-- Spring Boot Starter Test (for unit testing) -->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-test</artifactId>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
 
 		<!-- Jakarta Validation API (required for validation annotations like @NotBlank, @Past, @Valid) -->
 		<dependency>
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
 			<version>3.0.2</version> <!-- Ensure to use the right version for your Spring Boot version -->
+		</dependency>
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+			<version>3.1.0</version> <!-- Specify the correct version (ensure compatibility with your Spring Boot version) -->
+		</dependency>
+
+		<!-- Hibernate ORM (JPA implementation, included by default in spring-boot-starter-data-jpa, but explicitly adding it is optional) -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>6.1.6.Final</version> <!-- Use a compatible version with your setup -->
 		</dependency>
 
 		<!-- Hibernate Validator (implementation of Jakarta Validation API) -->
@@ -59,6 +82,12 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>7.0.2.Final</version> <!-- Hibernate Validator version for Jakarta -->
 		</dependency>
+		<dependency>
+			<groupId>com.mysql.cj</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>9.1.0</version>
+		</dependency>
+
 
 		<!-- Jackson DataFormat XML (for XML support) -->
 <!--		<dependency>-->
@@ -66,6 +95,18 @@
 <!--			<artifactId>jackson-dataformat-xml</artifactId>-->
 <!--			<version>2.15.0</version> &lt;!&ndash; Choose the appropriate version &ndash;&gt;-->
 <!--		</dependency>-->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.8.2</version> <!-- You can use a version like 5.8.2 or newer -->
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.8.2</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- Spring Boot Starter Jackson (for JSON support) -->
 		<dependency>

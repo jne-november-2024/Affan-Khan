@@ -1,4 +1,6 @@
 package com.test.restful_web_services;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.*;
@@ -7,22 +9,41 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
-@Validated
+import java.util.List;
 
+@Entity
+@Table(name = "users")
 public class User {
-
+    @Id
+    @GeneratedValue
     private int id;
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
     @NotBlank(message = "Name cannot be empty")
     private String name;
+
     @Past(message = "Birthdate must be in the past")
     private LocalDate birthdate;
-   @JsonCreator
-    public User( @JsonProperty("id")int id, @JsonProperty("name") String name, @JsonProperty("birthdate") LocalDate birthdate) {
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Post> posts;
+
+    @JsonCreator
+    public User(@JsonProperty("id")int id, @JsonProperty("name") String name, @JsonProperty("birthdate") LocalDate birthdate) {
         this.id = id;
         this.name = name;
         this.birthdate = birthdate;
     }
-    public User() {}
+
+    protected User() {}
 
     public int getId() {
         return id;

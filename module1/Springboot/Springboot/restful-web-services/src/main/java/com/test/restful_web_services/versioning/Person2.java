@@ -1,6 +1,7 @@
 package com.test.restful_web_services.versioning;
 
 public class Person2 {
+
     private Name name;
 
     public Person2(Name name) {

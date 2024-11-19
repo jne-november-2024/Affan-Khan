@@ -1,6 +1,7 @@
 package com.test.restful_web_services;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -15,10 +16,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@Validated
 public class UserResource {
+
     private final UserDaoService service;
 
+    @Autowired
     public UserResource(UserDaoService service) {
         this.service = service;
     }

@@ -11,6 +11,7 @@ class Parallel {
                                    .limit(20000)
                                    .collect(Collectors.toList());
 
+        @SuppressWarnings("unused")
         List<Long> fact = list.parallelStream() 
                               .map(Parallel::Factorial)
                               .collect(Collectors.toList());

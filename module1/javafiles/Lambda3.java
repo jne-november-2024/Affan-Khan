@@ -3,6 +3,7 @@ interface A{
     int add(int i,int j);
 }
 
+@SuppressWarnings("unused")
 class Lambda3
 {
     public static void main(String args[])

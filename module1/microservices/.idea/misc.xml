@@ -5,6 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/limits-service/pom.xml" />
+        <option value="$PROJECT_DIR$/currency-exchange-service/currency-exchange-service/pom.xml" />
       </list>
     </option>
   </component>

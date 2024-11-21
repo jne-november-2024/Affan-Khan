@@ -9,4 +9,4 @@ class Collects8
     System.out.println(advocatesCopy);
     System.out.println(advocates);
     }
-}
+}   
